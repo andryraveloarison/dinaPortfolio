@@ -35,9 +35,10 @@
 
 }
 
+
 .content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   color: var(--color-text);
   z-index: 1;
@@ -58,7 +59,10 @@
 
 }
 
-
+.quote {
+  margin-top: -10vh;
+  text-align: center;
+}
 
 .title {
   font-size: calc(5rem + 2vw); /* Utilisation de vw pour ajuster la taille du texte en fonction de la largeur de la fenêtre */

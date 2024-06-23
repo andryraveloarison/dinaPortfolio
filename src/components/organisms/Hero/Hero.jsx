@@ -22,6 +22,7 @@ export const Hero = () => {
     <section className={styles.container}>
       <div className={styles.content}>
         <h1 className={styles.title} ref={linkRef}>Dina</h1>
+        <p className={styles.quote}> "Chaque jour est une opportunite pour grandir et apprendre"</p>
       </div>
 
     </section>
