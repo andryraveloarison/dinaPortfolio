@@ -119,7 +119,7 @@ export const animateHero = (ref1, ref2,ref3,ref4)=> {
 
     gsap.to(ref4.current, {
       opacity: 1,
-      y: -50,
+      y: -20,
       ease: Power3.easeOut,
       duration: 1,
     });
