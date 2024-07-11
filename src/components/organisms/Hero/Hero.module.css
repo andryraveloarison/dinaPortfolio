@@ -10,6 +10,10 @@
   margin-right: 5%;
   min-height: calc(100vh - 101px);
   padding-top: 12vh;
+  background-image: url('../../../../assets/decoration/cadre1.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
 }
 
@@ -43,6 +47,7 @@
   color: var(--color-text);
   z-index: 1;
   margin-top: 10px;
+
 }
 
 
@@ -133,6 +138,10 @@
   background: rgba(25, 55, 109, 0.7);
   filter: blur(100px);
   z-index: 0;
+}
+
+.cadreOne {
+  position: absolute;
 }
 
 @media screen and (max-width: 910px) {
