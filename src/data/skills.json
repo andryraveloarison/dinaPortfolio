@@ -1,37 +1,57 @@
 [
-  {
-      "category":"front-end",
-      "title": "React Js",
-      "imageSrc": "skills/react.png"
-  },
-  {
-      "category":"front-end",
-      "title": "Tailwind",
-      "imageSrc": "skills/tailwind.png"
-  },
-  {
-      "category":"back-end",
-      "title": "Node",
-      "imageSrc": "skills/node.png"
-  },
-  {
-      "category":"back-end",
-      "title": "Spring boot",
-      "imageSrc": "skills/spring.png"
-  },
-  {
-      "category":"back-end",
-      "title": "Postgreql",
-      "imageSrc": "skills/postgres.png"
-  },
-  {
-      "category":"other",
-      "title": "github",
-      "imageSrc": "skills/githubIcon.png"
-  },
-  {
-    "category":"other",
-    "title": "React native",
-    "imageSrc": "skills/react.png"
+    {
+        "category": "Informatqiue",
+        "title": "MS Office",
+        "imageSrc": "skills/office.png"
+    },
+    {
+        "category": "Informatqiue",
+        "title": "MS Project",
+        "imageSrc": "skills/project.png"
+    },
+    {
+        "category": "Informatqiue",
+        "title": "SPSS",
+        "imageSrc": "skills/spss.png"
+    },
+    {
+        "category": "Informatqiue",
+        "title": "Sphinx",
+        "imageSrc": "skills/sphinx.png"
+    },
+    {
+        "category": "Informatqiue",
+        "title": "Kobotoolbox",
+        "imageSrc": "skills/kobo.png"
+    },
+    {
+        "category": "Informatqiue",
+        "title": "Canva / Vista Create",
+        "imageSrc": "skills/canva.png"
+    },
+    {
+        "category": "Langues",
+        "title": "Français (DELF 86/100)",
+        "imageSrc": "skills/france.png"
+    },
+    {
+        "category": "Langues",
+        "title": "Anglais",
+        "imageSrc": "skills/uk.png"
+    },
+    {
+        "category": "Langues",
+        "title": "Malgache",
+        "imageSrc": "skills/mg.png"
+    },
+    {
+        "category": "Atouts",
+        "title": "Sociable",
+        "imageSrc": "skills/heart.png"
+    },
+    {
+        "category": "Atouts",
+        "title": "Responsable",
+        "imageSrc": "skills/star.png"
     }
 ]

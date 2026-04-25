@@ -1,33 +1,37 @@
-import styles from "./App.module.css";
-import PreLoader from "./pages/PreLoader/PreLoader.jsx"
-import { useRef, useEffect } from "react";
-import {gsap, Power3} from "gsap";
-import Home from "./pages/Home/Home.jsx"
+import React, { useEffect, useRef } from 'react';
+import styles from './App.module.css';
+import Home from './pages/Home/Home.jsx';
 
 function App() {
-  const preLoaderRef = useRef(null);
+  const crRef = useRef(null);
+  const crrRef = useRef(null);
 
-  // Let create async method to fetch fake data
   useEffect(() => {
-    const fakeDataFetch = () => {
-      setTimeout(() => {
-        gsap.to(preLoaderRef.current, {
-          opacity: 0.9,
-          y: 900,
-          ease: Power3.easeOut,
-          duration: 3,
-          zIndex:-1
-        });      
+    const handleMouseMove = (e) => {
+      if (crRef.current && crrRef.current) {
+        const { clientX: x, clientY: y } = e;
+        crRef.current.style.left = `${x}px`;
+        crRef.current.style.top = `${y}px`;
 
-      }, 2500);
+        // Slight delay for ring
+        setTimeout(() => {
+          if (crrRef.current) {
+            crrRef.current.style.left = `${x}px`;
+            crrRef.current.style.top = `${y}px`;
+          }
+        }, 50);
+      }
     };
 
-    fakeDataFetch();
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
     <div className={styles.App}>
-          <Home/>
+      <div className={styles.cursor} ref={crRef}></div>
+      <div className={styles.cursorRing} ref={crrRef}></div>
+      <Home />
     </div>
   );
 }

@@ -1,146 +1,132 @@
-@import "../../../vars.css";
+.aboutSection {
+  padding: 140px 0;
+  background: var(--cream);
+}
 
 .container {
-  border-radius: 15px;
-  margin-top: 30vh;
-  z-index: 1;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
-.title {
-  color: var(--color-text);
-  font-size: 35px;
-  font-weight: 700;
-  letter-spacing: 1.75px;
-  text-align: center;
-}
-
-.content {
+.secLabel {
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
   align-items: center;
-  margin-top: 15vh;
-  scale: 0;
+  gap: 14px;
 }
 
-.aboutImage {
-  width: 40vw;
-  min-width: 250px;
-  max-width: 60vh;
+.secLabel::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 
-.aboutItems {
-  color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  gap: 40px;
-  width: 40vw;
+.secTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 56px;
 }
 
-.aboutItem {
-  display: flex;
-  flex-direction: row;
+.italic {
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
   align-items: center;
-  border-radius: 20px;
-  list-style: none;
-  padding: 25px;
 }
 
-
-.aboutItemText {
-  display: flex;
-  flex-direction: column;
-  align-items:start;
-  border-radius: 20px;
-  list-style: none;
-  padding: 25px;
-  gap: 10px;
+.aboutPortrait {
+  position: relative;
 }
 
-
-.aboutItem h3 {
-  font-size: 15px;
-  font-weight: 600;
-}
-
-
-.aboutItem h1 {
-  font-size: 2.5vw;    
-  text-align: center;  
-}
-
-.aboutItem p {
-  font-size: 1.5vw
-}
-
-
-.containerMotion {
-  display: flex;
-  place-content: center;
-  place-items: center;
+.aboutPortraitFrame {
+  background: var(--peach);
+  border-radius: 2px;
   overflow: hidden;
-  border-radius: 30px;
+  position: relative;
 }
 
-.itemMotion {
-  width: 150px;
-  height: 150px;
-  background: white;
-  border-radius: inherit;
-  cursor: grabbing;
-  align-items: center;
+.aboutPortraitFrame svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.itemMotion:hover {
-  cursor: grab;
+.aboutPortraitDeco {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--gold-light);
+  border-radius: 2px;
+  z-index: -1;
 }
 
+.aboutPortraitLabel {
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
 
+.aboutText p {
+  font-size: 20px;
+  line-height: 1.85;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
 
+.aboutTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
 
-@media screen and (max-width: 830px) {
+.aboutTag {
+  border: 1px solid var(--border);
+  padding: 8px 20px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--ink);
+  text-transform: uppercase;
+  background: #fff;
+  transition: all 0.2s;
+  cursor: default;
+}
 
-  .title {
-    font-size: 30px;
-  }
-  .aboutItems {
-    width: 80vw;
+.aboutTag:hover {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+@media (max-width: 900px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .container {
-    background-color: transparent;
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 20vh;
+    padding: 0 24px;
   }
-
-  .content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .aboutItem p {
-    font-size: 15px
-  }
-
-  .aboutItem h1 {
-    font-size: 30px;
-    text-align: center;
-    width: 100%;
-  }
-
-  .aboutItems {
-    margin-top: 29px;
-    text-align: center;
-  }
-
-  .aboutItem{
-    padding:0;
-    }
-
-
-    .aboutItemText {
-      align-items:center;
-    }
 }

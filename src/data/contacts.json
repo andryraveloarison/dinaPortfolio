@@ -1,18 +1,17 @@
 [
     {
-        "name":"andryraveloarison01@gmail.com",
+        "name": "dinafitiavana14@gmail.com",
         "imageSrc": "contact/emailIcon.png",
-        "source": "mailto:contact@andryraveloarison01.com"
+        "source": "mailto:dinafitiavana14@gmail.com"
     },
     {
-        "name":"Linkedin",
+        "name": "LinkedIn",
         "imageSrc": "contact/linkedinIcon.png",
-        "source": "https://www.linkedin.com/in/andry-raveloarison-9aba3325a/"
+        "source": "https://www.linkedin.com/in/dina-fitiavana"
     },
     {
-        "name":"Github",
-        "imageSrc": "contact/githubIcon.png",
-        "source": "https://github.com/andryraveloarison"
+        "name": "034 39 616 81",
+        "imageSrc": "contact/phoneIcon.png",
+        "source": "tel:0343961681"
     }
-  ]
-  
+]

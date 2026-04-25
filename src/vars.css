@@ -1,12 +1,18 @@
 :root {
   /* Colours */
-  --color-text: #0b0b0b;
-  --color-primary: #7f7874;
-  --color-secondary: #19376d;
-  --color-dark: #0b2447;
-  --color-bg: #E6E6E6;
+  --gold: #B8936A;
+  --gold-light: #D4B896;
+  --gold-dark: #7A5C38;
+  --ink: #2D2218;
+  --cream: #FDF8F3;
+  --warm: #FAF3EA;
+  --peach: #F5E8D8;
+  --blush: #F0DDD0;
+  --muted: #8A7060;
+  --white: #FFFFFF;
+  --border: rgba(184, 147, 106, 0.2);
 
-  
   /* Fonts */
-  --font-roboto: "Roboto";
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'DM Sans', sans-serif;
 }

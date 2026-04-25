@@ -1,0 +1,65 @@
+.portrait3Section {
+    background: var(--peach);
+    padding: 140px 64px;
+}
+
+.portrait3Inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.portrait3Visual {
+    display: flex;
+    justify-content: center;
+}
+
+.portrait3Visual svg {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+}
+
+.portrait3Content h2 {
+    font-family: var(--font-serif);
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 24px;
+    line-height: 1.15;
+}
+
+.italic {
+    font-style: italic;
+    font-family: var(--font-serif);
+    color: var(--gold);
+}
+
+.portrait3Content p {
+    font-size: 20px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-bottom: 24px;
+}
+
+.interestsText {
+    margin-top: 32px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+}
+
+@media (max-width: 900px) {
+    .portrait3Inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .portrait3Section {
+        padding: 60px 24px;
+    }
+}

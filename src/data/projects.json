@@ -1,22 +1,29 @@
 [
   {
     "index": "01",
-    "title": "Site Helpdesk",
+    "title": "Management RH",
     "imageSrc": "projects/helpDesk.png",
-    "description": "Create a ticket and chat with our IT specialists to resolve your issue.",
-    "skills": ["React","Prisma", "NodeJs","Tailwind","Postgresql"],
-    "demo": "https://www.example.com",
-    "source": "https://www.github.com",
-    "date": "2023"
+    "description": "Expertise en recrutement, gestion administrative du personnel et développement de la cohésion d'équipe.",
+    "skills": [
+      "Recrutement",
+      "Gestion RH",
+      "Management"
+    ],
+    "demo": "#",
+    "source": "#",
+    "date": "2024"
   },
   {
     "index": "02",
-    "title": "Dominoes",
+    "title": "Outils de Recrutement",
     "imageSrc": "projects/daomy.png",
-    "description": "Play dominoes with your friends even when you don't have dominoes or are far apart.",
-    "skills": ["React", "Spring boot"],
-    "demo": "https://www.example.com",
-    "source": "https://www.github.com",
+    "description": "Conception et élaboration d'outils de suivi et de recrutement adaptés aux besoins clients.",
+    "skills": [
+      "Outils RH",
+      "Analyse de données"
+    ],
+    "demo": "#",
+    "source": "#",
     "date": "2024"
   }
 ]

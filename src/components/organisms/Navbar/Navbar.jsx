@@ -9,12 +9,12 @@ export const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div>
-      <a className={styles.title} href="/">
-        Fitiavana
-      </a>
-      <p className={styles.place}>Madagascar</p>
+        <a className={styles.title} href="/">
+          Fitiavana
+        </a>
+        <p className={styles.place}>Madagascar</p>
       </div>
-      
+
       <div className={styles.menu}>
         <img
           className={styles.menuBtn}
@@ -30,14 +30,14 @@ export const Navbar = () => {
           className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`}
           onClick={() => setMenuOpen(false)}
         >
-           <li>
-            <a href="#projects">WORK</a>
+          <li>
+            <a href="#projects">PROJETS</a>
           </li>
           <li>
-            <a href="#about">ABOUT ME</a>
+            <a href="#about">À PROPOS</a>
           </li>
           <li>
-            <a href="#experiences">EXPERIENCES</a>
+            <a href="#experiences">EXPÉRIENCES</a>
           </li>
         </ul>
       </div>

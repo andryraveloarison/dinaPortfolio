@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faneva Dina Fitiavana — Portfolio RH</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #B8936A;
+    --gold-light: #D4B896;
+    --gold-dark: #7A5C38;
+    --ink: #2D2218;
+    --cream: #FDF8F3;
+    --warm: #FAF3EA;
+    --peach: #F5E8D8;
+    --blush: #F0DDD0;
+    --muted: #8A7060;
+    --border: rgba(184,147,106,0.2);
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  /* CURSOR */
+  .cursor { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.15s ease; }
+  .cursor-ring { width: 32px; height: 32px; border: 1.5px solid var(--gold-light); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: left 0.1s ease, top 0.1s ease, width 0.3s, height 0.3s; opacity: 0.6; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 64px; display: flex; justify-content: space-between; align-items: center; transition: all 0.4s; }
+  nav.scrolled { background: rgba(253,248,243,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 64px; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: 1px; text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; overflow: hidden; }
+
+  .hero-left { background: var(--warm); padding: 120px 64px 80px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  .hero-left::before { content: ''; position: absolute; width: 500px; height: 500px; border: 1px solid rgba(184,147,106,0.12); border-radius: 50%; top: -160px; left: -160px; animation: spin 40s linear infinite; }
+  .hero-left::after { content: ''; position: absolute; width: 300px; height: 300px; border: 1px solid rgba(184,147,106,0.08); border-radius: 50%; bottom: -80px; right: -80px; animation: spin 25s linear infinite reverse; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero-eyebrow { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; opacity: 0; animation: up 0.8s 0.2s forwards; }
+  .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5.5vw, 72px); font-weight: 300; color: var(--ink); line-height: 1.05; margin-bottom: 8px; opacity: 0; animation: up 0.9s 0.4s forwards; }
+  .hero-name em { font-style: italic; color: var(--gold); }
+  .hero-title { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; opacity: 0; animation: up 0.9s 0.55s forwards; }
+
+  .hero-quote { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--muted); line-height: 1.75; border-left: 2px solid var(--gold-light); padding-left: 20px; max-width: 380px; margin-bottom: 44px; opacity: 0; animation: up 0.9s 0.7s forwards; }
+
+  .hero-contact { display: flex; flex-direction: column; gap: 10px; opacity: 0; animation: up 0.9s 0.9s forwards; }
+  .hero-contact a { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s, padding-left 0.2s; }
+  .hero-contact a:hover { color: var(--gold); padding-left: 4px; }
+  .cdot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  .hero-right { background: var(--white); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+
+  /* PORTRAIT ILLUSTRATION 1 — hero */
+  .portrait-hero { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; padding: 40px 0 0; opacity: 0; animation: up 1s 0.6s forwards; }
+  .portrait-hero svg { width: 90%; max-width: 420px; height: auto; }
+
+  .scroll-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--gold-light), transparent); animation: pulse 2s ease-in-out infinite; }
+  .scroll-text { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); }
+  @keyframes pulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+  @keyframes up { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+
+  /* STATS BAND */
+  .stats-band { background: var(--gold); padding: 40px 64px; display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; }
+  .stat-item { border-right: 1px solid rgba(255,255,255,0.2); padding: 0 20px; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: #fff; line-height: 1; }
+  .stat-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 96px 0; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 64px; }
+
+  .sec-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 14px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  .sec-title { font-family:'Cormorant Garamond', serif; font-size: clamp(34px,4vw,52px); font-weight:300; line-height:1.1; margin-bottom:56px; }
+
+  /* ABOUT — with portrait */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-portrait { position: relative; }
+  .about-portrait-frame { background: var(--peach); border-radius: 2px; overflow: hidden; position: relative; }
+  .about-portrait-frame svg { width: 100%; height: auto; display: block; }
+  .about-portrait-deco { position: absolute; bottom: -16px; right: -16px; width: 80px; height: 80px; border: 2px solid var(--gold-light); border-radius: 2px; z-index: -1; }
+  .about-portrait-label { position: absolute; top: 20px; left: -20px; background: var(--gold); color: #fff; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; padding: 8px 16px; writing-mode: vertical-rl; transform: rotate(180deg); }
+
+  .about-text p { font-size: 16px; line-height: 1.85; color: var(--muted); margin-bottom: 20px; }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .about-tag { border: 1px solid var(--border); padding: 6px 16px; font-size: 11px; letter-spacing: 1px; color: var(--ink); text-transform: uppercase; background: #fff; transition: all 0.2s; cursor: default; }
+  .about-tag:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+  /* EXPERIENCE */
+  .exp-bg { background: var(--ink); }
+  .exp-bg .sec-title { color: #FDF8F3; }
+
+  .timeline { position: relative; padding-left: 36px; }
+  .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom, var(--gold), transparent 90%); }
+
+  .tl-item { position:relative; padding-bottom:52px; opacity:0; transform:translateX(-18px); transition:opacity 0.7s, transform 0.7s; }
+  .tl-item.vis { opacity:1; transform:translateX(0); }
+  .tl-item:last-child { padding-bottom:0; }
+  .tl-dot { position:absolute; left:-43px; top:8px; width:14px; height:14px; border:2px solid var(--gold); border-radius:50%; background:var(--ink); transition:background 0.25s; }
+  .tl-item:hover .tl-dot { background:var(--gold); }
+  .tl-date { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .tl-role { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:#FDF8F3; margin-bottom:4px; }
+  .tl-co { font-size:12px; color:rgba(253,248,243,0.4); margin-bottom:14px; letter-spacing:0.3px; }
+  .tl-desc { list-style:none; }
+  .tl-desc li { font-size:14px; color:rgba(253,248,243,0.6); line-height:1.8; padding-left:18px; position:relative; margin-bottom:3px; }
+  .tl-desc li::before { content:'—'; position:absolute; left:0; color:var(--gold); font-size:11px; top:1px; }
+
+  /* PORTRAIT 2 — in experience section */
+  .exp-portrait-wrap { display:flex; justify-content:center; margin-bottom:60px; }
+  .exp-portrait-card { background: rgba(253,248,243,0.04); border: 1px solid rgba(184,147,106,0.15); padding: 24px; display:inline-block; position:relative; }
+  .exp-portrait-card svg { width: 220px; height: auto; display: block; }
+  .exp-portrait-caption { text-align:center; margin-top:14px; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); }
+
+  /* COMPETENCES */
+  .comp-bg { background: var(--cream); }
+  .comp-cols { display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+  .comp-group-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--ink); margin-bottom:32px; }
+
+  .skill-item { margin-bottom:22px; opacity:0; transform:translateX(-14px); transition:opacity 0.5s,transform 0.5s; }
+  .skill-item.vis { opacity:1; transform:translateX(0); }
+  .skill-head { display:flex; justify-content:space-between; margin-bottom:8px; }
+  .skill-name { font-size:13px; color:var(--ink); }
+  .skill-pct { font-size:11px; color:var(--gold-dark); font-weight:500; }
+  .skill-track { height:2px; background:rgba(184,147,106,0.15); }
+  .skill-fill { height:100%; background:linear-gradient(90deg,var(--gold-dark),var(--gold)); width:0; transition:width 1.3s cubic-bezier(0.4,0,0.2,1); }
+  .skill-fill.anim { width:var(--w); }
+
+  .lang-list { display:flex; flex-direction:column; gap:0; }
+  .lang-item { display:flex; align-items:center; gap:18px; padding:18px 0; border-bottom:1px solid var(--border); opacity:0; transform:translateX(14px); transition:opacity 0.5s,transform 0.5s; }
+  .lang-item.vis { opacity:1; transform:translateX(0); }
+  .lang-flag { width:42px; height:42px; border-radius:50%; background:var(--peach); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .lang-info { flex:1; }
+  .lang-name { font-size:15px; font-weight:500; color:var(--ink); }
+  .lang-lvl { font-size:11px; color:var(--muted); }
+  .lang-dots { display:flex; gap:5px; }
+  .lang-dot { width:7px; height:7px; border-radius:50%; background:rgba(184,147,106,0.2); }
+  .lang-dot.on { background:var(--gold); }
+
+  /* FORMATION */
+  .form-bg { background: var(--warm); }
+  .form-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:24px; }
+  .form-card { background:#fff; border:1px solid var(--border); padding:32px 28px; position:relative; overflow:hidden; opacity:0; transform:translateY(20px); transition:opacity 0.6s,transform 0.6s,box-shadow 0.3s; }
+  .form-card.vis { opacity:1; transform:translateY(0); }
+  .form-card:hover { box-shadow:0 20px 44px rgba(45,34,24,0.08); }
+  .form-year { font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:300; color:rgba(184,147,106,0.12); position:absolute; top:12px; right:16px; line-height:1; }
+  .form-lvl { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .form-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; line-height:1.35; margin-bottom:8px; }
+  .form-place { font-size:12px; color:var(--muted); }
+  .form-badge { display:inline-block; margin-top:16px; padding:4px 12px; background:rgba(184,147,106,0.1); color:var(--gold-dark); font-size:10px; letter-spacing:1.5px; text-transform:uppercase; }
+
+  /* ATOUTS */
+  .atout-bg { background:var(--ink); }
+  .atout-bg .sec-title { color:#FDF8F3; }
+  .atout-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+  .atout-item { padding:56px 40px; text-align:center; border-right:1px solid rgba(184,147,106,0.1); opacity:0; transform:scale(0.96); transition:opacity 0.6s,transform 0.6s,background 0.3s; cursor:default; }
+  .atout-item:last-child { border-right:none; }
+  .atout-item.vis { opacity:1; transform:scale(1); }
+  .atout-item:hover { background:rgba(184,147,106,0.06); }
+  .atout-icon { font-family:'Cormorant Garamond',serif; font-size:52px; color:var(--gold); display:block; margin-bottom:18px; }
+  .atout-name { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#FDF8F3; margin-bottom:14px; }
+  .atout-q { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:rgba(253,248,243,0.4); line-height:1.7; }
+
+  /* PORTRAIT 3 — bottom section */
+  .portrait3-section { background: var(--peach); padding: 80px 64px; }
+  .portrait3-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .portrait3-visual { display: flex; justify-content: center; opacity: 0; transform: translateX(-24px); transition: opacity 0.8s, transform 0.8s; }
+  .portrait3-visual.vis { opacity: 1; transform: translateX(0); }
+  .portrait3-visual svg { width: 100%; max-width: 380px; height: auto; }
+  .portrait3-content { opacity: 0; transform: translateX(24px); transition: opacity 0.8s 0.2s, transform 0.8s 0.2s; }
+  .portrait3-content.vis { opacity: 1; transform: translateX(0); }
+  .portrait3-content h2 { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; color:var(--ink); margin-bottom:24px; line-height:1.15; }
+  .portrait3-content p { font-size:15px; line-height:1.85; color:var(--muted); margin-bottom:16px; }
+  .interests { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .interest { display:flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--border); padding:8px 16px; font-size:12px; color:var(--ink); letter-spacing:0.5px; }
+  .interest-icon { font-size:16px; }
+
+  /* TRAININGS */
+  .train-bg { background: var(--cream); }
+  .train-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .train-item { background:#fff; border:1px solid var(--border); padding:20px 24px; display:flex; gap:18px; opacity:0; transform:translateY(10px); transition:opacity 0.5s,transform 0.5s,border-color 0.2s; }
+  .train-item.vis { opacity:1; transform:translateY(0); }
+  .train-item:hover { border-color:var(--gold); }
+  .train-pill { background:rgba(184,147,106,0.1); color:var(--gold-dark); font-size:10px; font-weight:500; padding:4px 10px; letter-spacing:1px; white-space:nowrap; height:fit-content; }
+  .train-name { font-size:14px; font-weight:500; color:var(--ink); margin-bottom:3px; line-height:1.3; }
+  .train-org { font-size:12px; color:var(--muted); line-height:1.5; }
+
+  /* ASSO */
+  .asso-bg { background: var(--warm); }
+  .asso-cols { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .asso-card { background: var(--peach); border: 1px solid var(--border); padding: 40px 32px; position:relative; overflow:hidden; opacity:0; transform:translateY(18px); transition:opacity 0.6s,transform 0.6s; }
+  .asso-card.vis { opacity:1; transform:translateY(0); }
+  .asso-card::after { content:''; position:absolute; bottom:-50px; right:-50px; width:130px; height:130px; border:1px solid rgba(184,147,106,0.18); border-radius:50%; }
+  .asso-date { font-size:10px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+  .asso-role { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--ink); margin-bottom:6px; }
+  .asso-org { font-size:12px; color:var(--muted); margin-bottom:16px; }
+  .asso-desc { font-size:14px; color:var(--muted); line-height:1.75; }
+
+  /* FOOTER */
+  footer { background: var(--ink); padding: 72px 64px; text-align:center; }
+  .foot-name { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:300; color:#FDF8F3; margin-bottom:8px; }
+  .foot-tag { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:36px; }
+  .foot-links { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; }
+  .foot-links a { color:rgba(253,248,243,0.35); font-size:12px; letter-spacing:0.5px; text-decoration:none; transition:color 0.2s; }
+  .foot-links a:hover { color:var(--gold); }
+  .foot-hr { width:40px; height:1px; background:rgba(184,147,106,0.25); margin:36px auto 0; }
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .hero-right{height:60vw;}
+    .about-grid,.comp-cols,.train-grid,.asso-cols,.portrait3-inner{grid-template-columns:1fr;}
+    .atout-grid{grid-template-columns:1fr;}
+    .stats-band{grid-template-columns:1fr 1fr;}
+    .container,.portrait3-section,.footer{padding:60px 28px;}
+    nav{padding:16px 28px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cr"></div>
+<div class="cursor-ring" id="crr"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">F.D.F</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#experience">Expériences</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#formation">Formation</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Portfolio · Ressources Humaines</p>
+    <h1 class="hero-name">Faneva Dina<br><em>Fitiavana</em></h1>
+    <p class="hero-title">HR Consultant &amp; Recrutement</p>
+    <blockquote class="hero-quote">Une réelle passion pour les relations humaines et une curiosité incessante sur la manière de donner de l'importance à chaque personne.</blockquote>
+    <div class="hero-contact">
+      <a href="mailto:dinafitiavana14@gmail.com"><span class="cdot"></span>dinafitiavana14@gmail.com</a>
+      <a href="tel:+261343961681"><span class="cdot"></span>034 39 616 81</a>
+      <a href="#"><span class="cdot"></span>Andraisoro, Antananarivo — Madagascar</a>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Découvrir</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- PORTRAIT 1: Élégante au bureau, souriant -->
+    <div class="portrait-hero">
+      <svg viewBox="0 0 400 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background wash -->
+        <rect x="0" y="0" width="400" height="540" fill="#F5E8D8" rx="0"/>
+        <!-- Desk surface -->
+        <rect x="0" y="400" width="400" height="140" fill="#E8D4BC" rx="0"/>
+        <rect x="0" y="398" width="400" height="6" fill="#C9A87A" rx="0"/>
+        <!-- Laptop on desk -->
+        <rect x="80" y="350" width="180" height="110" rx="6" fill="#D4B896" stroke="#B8936A" stroke-width="1.5"/>
+        <rect x="90" y="358" width="160" height="85" rx="3" fill="#2D2218"/>
+        <!-- Screen glow -->
+        <rect x="94" y="362" width="152" height="77" rx="2" fill="#3A2E20"/>
+        <rect x="100" y="368" width="80" height="8" rx="2" fill="#B8936A" opacity="0.7"/>
+        <rect x="100" y="380" width="120" height="6" rx="2" fill="#7A5C38" opacity="0.5"/>
+        <rect x="100" y="390" width="100" height="6" rx="2" fill="#7A5C38" opacity="0.4"/>
+        <rect x="100" y="400" width="110" height="6" rx="2" fill="#7A5C38" opacity="0.3"/>
+        <!-- Laptop base -->
+        <ellipse cx="170" cy="448" rx="90" ry="8" fill="#C9A87A" opacity="0.6"/>
+        <!-- Notepad -->
+        <rect x="280" y="390" width="80" height="100" rx="3" fill="#FDF8F3" stroke="#D4B896" stroke-width="1"/>
+        <line x1="292" y1="410" x2="348" y2="410" stroke="#D4B896" stroke-width="1"/>
+        <line x1="292" y1="422" x2="348" y2="422" stroke="#D4B896" stroke-width="1"/>
+        <line x1="292" y1="434" x2="340" y2="434" stroke="#D4B896" stroke-width="1"/>
+        <!-- Body / blazer -->
+        <path d="M120 440 C120 380 140 340 200 310 C260 340 280 380 280 440 Z" fill="#7A5C38"/>
+        <path d="M170 330 L200 310 L230 330 L220 440 L180 440 Z" fill="#5C4228"/>
+        <!-- Neck -->
+        <rect x="185" y="280" width="30" height="40" rx="8" fill="#C4956A"/>
+        <!-- Head -->
+        <ellipse cx="200" cy="255" rx="52" ry="58" fill="#C4956A"/>
+        <!-- Hair — natural afro style -->
+        <ellipse cx="200" cy="218" rx="62" ry="48" fill="#1A0F06"/>
+        <ellipse cx="148" cy="245" rx="22" ry="36" fill="#1A0F06"/>
+        <ellipse cx="252" cy="245" rx="22" ry="36" fill="#1A0F06"/>
+        <ellipse cx="200" cy="196" rx="56" ry="30" fill="#1A0F06"/>
+        <!-- Hair shine -->
+        <ellipse cx="178" cy="208" rx="14" ry="10" fill="#2D1A0A" opacity="0.5"/>
+        <!-- Face details -->
+        <!-- Eyes -->
+        <ellipse cx="184" cy="256" rx="8" ry="6" fill="#1A0F06"/>
+        <ellipse cx="216" cy="256" rx="8" ry="6" fill="#1A0F06"/>
+        <ellipse cx="186" cy="255" rx="3" ry="3" fill="#fff" opacity="0.3"/>
+        <ellipse cx="218" cy="255" rx="3" ry="3" fill="#fff" opacity="0.3"/>
+        <!-- Eyebrows -->
+        <path d="M176 246 Q184 242 192 245" stroke="#1A0F06" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M208 245 Q216 242 224 246" stroke="#1A0F06" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <!-- Nose -->
+        <path d="M196 262 Q200 270 204 262" stroke="#A0745A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Smile -->
+        <path d="M186 278 Q200 290 214 278" stroke="#A0745A" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Earrings -->
+        <circle cx="148" cy="266" r="5" fill="#B8936A"/>
+        <circle cx="148" cy="274" r="3" fill="#D4B896"/>
+        <circle cx="252" cy="266" r="5" fill="#B8936A"/>
+        <circle cx="252" cy="274" r="3" fill="#D4B896"/>
+        <!-- Collar / shirt detail -->
+        <path d="M180 330 L200 310 L220 330" stroke="#D4B896" stroke-width="1.5" fill="none"/>
+        <!-- Decorative circle top right -->
+        <circle cx="340" cy="80" r="50" stroke="#B8936A" stroke-width="1" fill="none" opacity="0.3"/>
+        <circle cx="340" cy="80" r="35" stroke="#B8936A" stroke-width="0.5" fill="none" opacity="0.2"/>
+        <!-- Small name plate bottom -->
+        <rect x="60" y="480" width="280" height="36" rx="2" fill="none" stroke="#B8936A" stroke-width="1" opacity="0.4"/>
+        <text x="200" y="503" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" fill="#7A5C38" font-style="italic" opacity="0.7">HR Consultant · Madagascar</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item"><div class="stat-num">2+</div><div class="stat-lbl">Années d'expérience</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-lbl">Postes occupés</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-lbl">Langues maîtrisées</div></div>
+  <div class="stat-item"><div class="stat-num">M2</div><div class="stat-lbl">Mention Bien</div></div>
+</div>
+
+<!-- À PROPOS -->
+<section id="about" style="background:var(--cream);">
+  <div class="container">
+    <p class="sec-label">À propos</p>
+    <div class="about-grid">
+      <div class="about-portrait">
+        <div class="about-portrait-label">Portrait</div>
+        <div class="about-portrait-frame">
+          <!-- PORTRAIT 2: Debout, professionnelle, confiante -->
+          <svg viewBox="0 0 360 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="360" height="480" fill="#F0DDD0"/>
+            <!-- Geometric deco -->
+            <circle cx="310" cy="60" r="70" stroke="#C9A87A" stroke-width="1" fill="none" opacity="0.35"/>
+            <circle cx="310" cy="60" r="45" stroke="#C9A87A" stroke-width="0.5" fill="none" opacity="0.2"/>
+            <!-- Body — standing, arms crossed -->
+            <rect x="100" y="300" width="160" height="180" fill="#5C4228" rx="2"/>
+            <!-- Blazer lapels -->
+            <path d="M155 305 L180 280 L205 305 L195 390 L165 390 Z" fill="#4A3420"/>
+            <!-- Arms crossed -->
+            <path d="M100 350 Q130 340 180 365 Q220 340 260 350 L260 390 Q220 380 180 395 Q130 380 100 390 Z" fill="#7A5C38"/>
+            <!-- Shirt -->
+            <rect x="160" y="295" width="40" height="80" fill="#FDF8F3" opacity="0.9"/>
+            <!-- Neck -->
+            <rect x="164" y="262" width="32" height="38" rx="9" fill="#C4956A"/>
+            <!-- Head -->
+            <ellipse cx="180" cy="238" rx="55" ry="60" fill="#C4956A"/>
+            <!-- Hair — elegant updo -->
+            <ellipse cx="180" cy="195" rx="60" ry="40" fill="#1A0F06"/>
+            <ellipse cx="128" cy="225" rx="20" ry="32" fill="#1A0F06"/>
+            <ellipse cx="232" cy="225" rx="20" ry="32" fill="#1A0F06"/>
+            <!-- Bun on top -->
+            <ellipse cx="180" cy="182" rx="28" ry="22" fill="#2D1A0A"/>
+            <ellipse cx="180" cy="176" rx="20" ry="14" fill="#1A0F06"/>
+            <!-- Hair accessory -->
+            <ellipse cx="202" cy="180" rx="8" ry="5" fill="#B8936A"/>
+            <!-- Face -->
+            <ellipse cx="165" cy="238" rx="8" ry="6.5" fill="#1A0F06"/>
+            <ellipse cx="195" cy="238" rx="8" ry="6.5" fill="#1A0F06"/>
+            <ellipse cx="167" cy="237" rx="3" ry="3" fill="#fff" opacity="0.28"/>
+            <ellipse cx="197" cy="237" rx="3" ry="3" fill="#fff" opacity="0.28"/>
+            <path d="M157 227 Q165 223 173 226" stroke="#1A0F06" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M187 226 Q195 223 203 227" stroke="#1A0F06" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M176 244 Q180 250 184 244" stroke="#A0745A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M167 260 Q180 272 193 260" stroke="#A0745A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Earrings long -->
+            <line x1="128" y1="248" x2="128" y2="268" stroke="#B8936A" stroke-width="1.5"/>
+            <circle cx="128" cy="270" r="4" fill="#D4B896"/>
+            <line x1="232" y1="248" x2="232" y2="268" stroke="#B8936A" stroke-width="1.5"/>
+            <circle cx="232" cy="270" r="4" fill="#D4B896"/>
+            <!-- Necklace -->
+            <path d="M164 285 Q180 294 196 285" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <circle cx="180" cy="295" r="3" fill="#B8936A"/>
+          </svg>
+        </div>
+        <div class="about-portrait-deco"></div>
+      </div>
+      <div class="about-text">
+        <h2 class="sec-title" style="margin-bottom:24px;">Une professionnelle<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;">passionnée</em></h2>
+        <p>Diplômée d'un Master II en Gestion — Management et Administration d'Entreprise à l'Université Catholique de Madagascar avec mention Bien et vice-major de promotion, je me suis spécialisée dans les Ressources Humaines avec une approche centrée sur l'humain.</p>
+        <p>Depuis 2022, j'évolue dans le recrutement et le conseil RH, d'abord chez Vivetic Group puis en tant que HR Consultant chez FTHM Consulting. Chaque mission est pour moi l'occasion de donner de la valeur à chaque personne.</p>
+        <div class="about-tags">
+          <span class="about-tag">Recrutement</span>
+          <span class="about-tag">Conseil RH</span>
+          <span class="about-tag">Intégration</span>
+          <span class="about-tag">Administration</span>
+          <span class="about-tag">Management</span>
+          <span class="about-tag">Leadership</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATOUTS -->
+<section class="atout-bg" id="atouts">
+  <div class="container">
+    <p class="sec-label" style="color:var(--gold);">Caractère</p>
+    <h2 class="sec-title" style="color:#FDF8F3;margin-bottom:48px;">Ce qui me définit</h2>
+  </div>
+  <div class="atout-grid">
+    <div class="atout-item">
+      <span class="atout-icon">◈</span>
+      <p class="atout-name">Sociable</p>
+      <p class="atout-q">« L'on est plus sociable et d'un meilleur commerce par le cœur que par l'esprit »</p>
+    </div>
+    <div class="atout-item">
+      <span class="atout-icon">◉</span>
+      <p class="atout-name">Responsable</p>
+      <p class="atout-q">« La responsabilité est le prix à payer du succès. »</p>
+    </div>
+    <div class="atout-item">
+      <span class="atout-icon">◌</span>
+      <p class="atout-name">Curieuse</p>
+      <p class="atout-q">Une curiosité incessante pour les relations humaines et l'épanouissement de chaque individu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-bg" id="experience">
+  <div class="container">
+    <p class="sec-label">Parcours</p>
+    <h2 class="sec-title">Expériences professionnelles</h2>
+    <div class="exp-portrait-wrap">
+      <div class="exp-portrait-card">
+        <!-- PORTRAIT 3: En réunion / entretien, expressive -->
+        <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="220" height="280" fill="#2D2218" rx="2"/>
+          <!-- Table edge -->
+          <rect x="0" y="200" width="220" height="80" fill="#231A12"/>
+          <rect x="0" y="198" width="220" height="5" fill="#B8936A" opacity="0.3"/>
+          <!-- Document on table -->
+          <rect x="20" y="215" width="80" height="55" rx="2" fill="#FDF8F3" opacity="0.15"/>
+          <line x1="28" y1="228" x2="92" y2="228" stroke="#B8936A" stroke-width="0.8" opacity="0.5"/>
+          <line x1="28" y1="238" x2="88" y2="238" stroke="#B8936A" stroke-width="0.8" opacity="0.4"/>
+          <line x1="28" y1="248" x2="80" y2="248" stroke="#B8936A" stroke-width="0.8" opacity="0.3"/>
+          <!-- Pen -->
+          <line x1="108" y1="220" x2="130" y2="255" stroke="#D4B896" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="130" cy="257" r="2" fill="#B8936A"/>
+          <!-- Body -->
+          <path d="M50 270 C50 230 70 200 110 178 C150 200 170 230 170 270 Z" fill="#7A5C38"/>
+          <path d="M90 195 L110 178 L130 195 L124 270 L96 270 Z" fill="#5C4228"/>
+          <!-- Shirt hint -->
+          <rect x="98" y="190" width="24" height="50" fill="#FDF8F3" opacity="0.8"/>
+          <!-- Neck -->
+          <rect x="98" y="164" width="24" height="28" rx="7" fill="#C4956A"/>
+          <!-- Head -->
+          <ellipse cx="110" cy="144" rx="42" ry="46" fill="#C4956A"/>
+          <!-- Hair -->
+          <ellipse cx="110" cy="112" rx="48" ry="34" fill="#1A0F06"/>
+          <ellipse cx="70" cy="132" rx="18" ry="28" fill="#1A0F06"/>
+          <ellipse cx="150" cy="132" rx="18" ry="28" fill="#1A0F06"/>
+          <ellipse cx="110" cy="100" rx="42" ry="22" fill="#1A0F06"/>
+          <!-- Hair shine -->
+          <ellipse cx="94" cy="106" rx="10" ry="7" fill="#2D1A0A" opacity="0.4"/>
+          <!-- Face — expressive, leaning forward -->
+          <ellipse cx="99" cy="144" rx="7" ry="5.5" fill="#1A0F06"/>
+          <ellipse cx="121" cy="144" rx="7" ry="5.5" fill="#1A0F06"/>
+          <ellipse cx="101" cy="143" rx="2.5" ry="2.5" fill="#fff" opacity="0.3"/>
+          <ellipse cx="123" cy="143" rx="2.5" ry="2.5" fill="#fff" opacity="0.3"/>
+          <path d="M93 136 Q99 132 105 135" stroke="#1A0F06" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M115 135 Q121 132 127 136" stroke="#1A0F06" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M105 150 Q110 155 115 150" stroke="#A0745A" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <!-- Confident smile -->
+          <path d="M100 162 Q110 172 120 162" stroke="#A0745A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <!-- Earrings -->
+          <circle cx="68" cy="152" r="4" fill="#B8936A"/>
+          <circle cx="152" cy="152" r="4" fill="#B8936A"/>
+          <!-- Gold text label -->
+          <text x="110" y="268" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="9" fill="#B8936A" opacity="0.8" font-style="italic">En entretien</text>
+        </svg>
+        <p class="exp-portrait-caption">Consultante en action</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-date">Depuis septembre 2024</p>
+        <h3 class="tl-role">HR Consultant</h3>
+        <p class="tl-co">FTHM Consulting — Antsahavola, Antananarivo</p>
+        <ul class="tl-desc">
+          <li>Missions de recrutement multi-secteurs pour des clients variés</li>
+          <li>Analyse des besoins et conception d'outils de recrutement</li>
+          <li>Rédaction des offres techniques et financières de prestation</li>
+          <li>Élaboration des outils de suivi du département RH</li>
+          <li>Respect des normes internationales de qualité</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-date">Mai – Septembre 2024</p>
+        <h3 class="tl-role">Chargée de Recrutement</h3>
+        <p class="tl-co">Vivetic Group — Andohatapenaka</p>
+        <ul class="tl-desc">
+          <li>Préparation des recrutements hebdomadaires et analyse des profils</li>
+          <li>Conduite des entretiens téléphoniques et de présélection</li>
+          <li>Accueil et intégration des nouveaux collaborateurs</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-date">Janvier – Mai 2024</p>
+        <h3 class="tl-role">Assistante Recrutement — CDD</h3>
+        <p class="tl-co">Vivetic Group — Andohatapenaka, Antananarivo</p>
+        <ul class="tl-desc">
+          <li>Tri et analyse des candidatures reçues</li>
+          <li>Entretiens et suivi des contrats</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-date">Août – Novembre 2022</p>
+        <h3 class="tl-role">Stage — Recrutement &amp; RH Administrative</h3>
+        <p class="tl-co">Vivetic Group — Andohatapenaka</p>
+        <ul class="tl-desc">
+          <li>Détection et contact des candidats potentiels</li>
+          <li>Édition des documents administratifs (attestations, contrats)</li>
+          <li>Classification des dossiers du personnel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="comp-bg" id="competences">
+  <div class="container">
+    <p class="sec-label">Maîtrise</p>
+    <h2 class="sec-title">Compétences</h2>
+    <div class="comp-cols">
+      <div>
+        <h3 class="comp-group-title">Outils informatiques</h3>
+        <div class="skill-item"><div class="skill-head"><span class="skill-name">MS Office (Word, Excel, PowerPoint)</span><span class="skill-pct">95%</span></div><div class="skill-track"><div class="skill-fill" style="--w:95%"></div></div></div>
+        <div class="skill-item"><div class="skill-head"><span class="skill-name">Canva / Vista Create</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="--w:90%"></div></div></div>
+        <div class="skill-item"><div class="skill-head"><span class="skill-name">SPSS / Sphinx</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="--w:80%"></div></div></div>
+        <div class="skill-item"><div class="skill-head"><span class="skill-name">MS Project</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="--w:75%"></div></div></div>
+        <div class="skill-item"><div class="skill-head"><span class="skill-name">KoboToolbox</span><span class="skill-pct">70%</span></div><div class="skill-track"><div class="skill-fill" style="--w:70%"></div></div></div>
+      </div>
+      <div>
+        <h3 class="comp-group-title">Langues</h3>
+        <div class="lang-list">
+          <div class="lang-item"><div class="lang-flag">🇲🇬</div><div class="lang-info"><div class="lang-name">Malgache</div><div class="lang-lvl">Langue maternelle</div></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div></div></div>
+          <div class="lang-item"><div class="lang-flag">🇫🇷</div><div class="lang-info"><div class="lang-name">Français</div><div class="lang-lvl">DELF — 86/100</div></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div></div></div>
+          <div class="lang-item"><div class="lang-flag">🇬🇧</div><div class="lang-info"><div class="lang-name">Anglais</div><div class="lang-lvl">Niveau intermédiaire</div></div><div class="lang-dots"><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div><div class="lang-dot"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section class="form-bg" id="formation">
+  <div class="container">
+    <p class="sec-label">Académique</p>
+    <h2 class="sec-title">Formation</h2>
+    <div class="form-grid">
+      <div class="form-card"><span class="form-year">23</span><p class="form-lvl">Master II</p><h3 class="form-title">Gestion — Management &amp; Administration d'Entreprise</h3><p class="form-place">Université Catholique de Madagascar, Antananarivo</p><span class="form-badge">Mention Bien · Vice-major de promotion</span></div>
+      <div class="form-card"><span class="form-year">22</span><p class="form-lvl">Certification</p><h3 class="form-title">Formation en Langues Françaises</h3><p class="form-place">Alliance Française Andavamamba, Antananarivo</p><span class="form-badge">DELF 86/100</span></div>
+      <div class="form-card"><span class="form-year">18</span><p class="form-lvl">Baccalauréat</p><h3 class="form-title">Enseignement Général — Série A2 Littéraire</h3><p class="form-place">Collège Saint Michel Amparibe, Antananarivo</p><span class="form-badge">Mention Bien</span></div>
+      <div class="form-card" style="background:rgba(184,147,106,0.05);"><p class="form-lvl">Centres d'intérêt</p><h3 class="form-title">Sport · Voyage · Chant · Lecture</h3><p class="form-place" style="margin-top:12px;line-height:1.7;font-size:13px;">Des passions qui nourrissent la créativité, l'ouverture d'esprit et la richesse relationnelle.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTRAIT 3 SECTION — Vie & Personnalité -->
+<div class="portrait3-section">
+  <div class="portrait3-inner">
+    <div class="portrait3-visual">
+      <svg viewBox="0 0 360 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="360" height="420" fill="#F5E8D8" rx="4"/>
+        <!-- Nature / outdoor deco -->
+        <circle cx="310" cy="340" r="120" fill="rgba(184,147,106,0.08)"/>
+        <circle cx="50" cy="80" r="80" fill="rgba(184,147,106,0.06)"/>
+        <!-- Casual dress — relaxed pose -->
+        <path d="M90 420 C90 360 110 310 180 275 C250 310 270 360 270 420 Z" fill="#B8936A"/>
+        <!-- Dress pattern detail -->
+        <path d="M140 340 Q180 330 220 340 L210 420 L150 420 Z" fill="#9A7550"/>
+        <!-- Arms relaxed -->
+        <path d="M90 330 Q75 350 70 380 L100 385 Q105 360 120 345 Z" fill="#9A7550"/>
+        <path d="M270 330 Q285 350 290 380 L260 385 Q255 360 240 345 Z" fill="#9A7550"/>
+        <!-- Neck -->
+        <rect x="163" y="243" width="34" height="38" rx="10" fill="#C4956A"/>
+        <!-- Head -->
+        <ellipse cx="180" cy="220" rx="56" ry="60" fill="#C4956A"/>
+        <!-- Natural hair — big afro puff -->
+        <ellipse cx="180" cy="176" rx="70" ry="56" fill="#1A0F06"/>
+        <ellipse cx="120" cy="205" rx="26" ry="40" fill="#1A0F06"/>
+        <ellipse cx="240" cy="205" rx="26" ry="40" fill="#1A0F06"/>
+        <ellipse cx="180" cy="158" rx="62" ry="36" fill="#1A0F06"/>
+        <!-- Afro texture dots -->
+        <circle cx="162" cy="165" r="3" fill="#2D1A0A" opacity="0.4"/>
+        <circle cx="180" cy="158" r="3" fill="#2D1A0A" opacity="0.4"/>
+        <circle cx="198" cy="165" r="3" fill="#2D1A0A" opacity="0.4"/>
+        <circle cx="170" cy="175" r="2.5" fill="#2D1A0A" opacity="0.3"/>
+        <circle cx="190" cy="175" r="2.5" fill="#2D1A0A" opacity="0.3"/>
+        <!-- Hair shine -->
+        <ellipse cx="158" cy="170" rx="16" ry="10" fill="#241508" opacity="0.3"/>
+        <!-- Face — big warm smile, relaxed -->
+        <ellipse cx="163" cy="222" rx="9" ry="7" fill="#1A0F06"/>
+        <ellipse cx="197" cy="222" rx="9" ry="7" fill="#1A0F06"/>
+        <ellipse cx="165" cy="221" rx="3.5" ry="3.5" fill="#fff" opacity="0.3"/>
+        <ellipse cx="199" cy="221" rx="3.5" ry="3.5" fill="#fff" opacity="0.3"/>
+        <path d="M154 211 Q163 207 172 210" stroke="#1A0F06" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M188 210 Q197 207 206 211" stroke="#1A0F06" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M170 228 Q180 236 190 228" stroke="#A0745A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Big happy smile -->
+        <path d="M162 243 Q180 260 198 243" stroke="#A0745A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Dimples -->
+        <circle cx="157" cy="246" r="2" fill="#B87058" opacity="0.4"/>
+        <circle cx="203" cy="246" r="2" fill="#B87058" opacity="0.4"/>
+        <!-- Earrings — hoops -->
+        <circle cx="124" cy="228" r="7" stroke="#D4B896" stroke-width="2" fill="none"/>
+        <circle cx="236" cy="228" r="7" stroke="#D4B896" stroke-width="2" fill="none"/>
+        <!-- Book in hand (reading interest) -->
+        <rect x="60" y="355" width="50" height="65" rx="2" fill="#FDF8F3" stroke="#D4B896" stroke-width="1.5" transform="rotate(-15 60 355)"/>
+        <rect x="62" y="357" width="46" height="61" rx="1" fill="#FDF8F3" transform="rotate(-15 62 357)"/>
+        <line x1="68" y1="372" x2="100" y2="362" stroke="#D4B896" stroke-width="1" opacity="0.5"/>
+        <line x1="70" y1="380" x2="102" y2="370" stroke="#D4B896" stroke-width="1" opacity="0.4"/>
+        <!-- Small music note (chant interest) -->
+        <text x="280" y="100" font-size="28" fill="#B8936A" opacity="0.4" font-family="serif">♪</text>
+        <text x="300" y="130" font-size="18" fill="#B8936A" opacity="0.25" font-family="serif">♫</text>
+      </svg>
+    </div>
+    <div class="portrait3-content">
+      <h2>Au-delà du bureau<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--gold);">une femme complète</em></h2>
+      <p>Ancienne cheffe d'équipe des Éclaireuses pendant 4 ans, je porte en moi les valeurs du leadership bienveillant, de la créativité collective et du service aux autres.</p>
+      <p>Aujourd'hui encore engagée en tant que Chargée RH au sein du Groupe Artistique TaMMA, je cultive la cohésion et la motivation comme art de vivre.</p>
+      <div class="interests">
+        <span class="interest"><span class="interest-icon">⚽</span>Sport</span>
+        <span class="interest"><span class="interest-icon">✈️</span>Voyage</span>
+        <span class="interest"><span class="interest-icon">🎵</span>Chant</span>
+        <span class="interest"><span class="interest-icon">📚</span>Lecture</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ASSOCIATIF -->
+<section class="asso-bg" id="associatif">
+  <div class="container">
+    <p class="sec-label">Engagement</p>
+    <h2 class="sec-title">Expériences associatives</h2>
+    <div class="asso-cols">
+      <div class="asso-card">
+        <p class="asso-date">Depuis janvier 2022</p>
+        <h3 class="asso-role">Chargée des Ressources Humaines</h3>
+        <p class="asso-org">Groupe Artistique TaMMA — Tsarahonenana, Antananarivo</p>
+        <p class="asso-desc">Développement de la cohésion et de la motivation des membres, instauration d'une ambiance conviviale pour une meilleure collaboration artistique.</p>
+      </div>
+      <div class="asso-card">
+        <p class="asso-date">2017 – 2021</p>
+        <h3 class="asso-role">Chef d'équipe des Éclaireuses</h3>
+        <p class="asso-org">Mpanazava Eto Madagasikara — Antananarivo</p>
+        <p class="asso-desc">Leadership d'équipe sur 4 années, développement des compétences techniques et de la créativité individuelle, gestion de projets collectifs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATIONS DIVERSES -->
+<section class="train-bg" id="trainings">
+  <div class="container">
+    <p class="sec-label">Développement continu</p>
+    <h2 class="sec-title">Formations diverses</h2>
+    <div class="train-grid">
+      <div class="train-item"><span class="train-pill">2024</span><div><p class="train-name">Efficacité organisationnelle</p><p class="train-org">Agile Conseils · Gestion du temps, communication non violente, gestion du stress</p></div></div>
+      <div class="train-item"><span class="train-pill">2024</span><div><p class="train-name">Techniques de recrutement</p><p class="train-org">Agile Conseils · Méthodes modernes du recrutement</p></div></div>
+      <div class="train-item"><span class="train-pill">2024</span><div><p class="train-name">Affirmation de soi &amp; Assertivité</p><p class="train-org">Agile Conseils · Développement personnel professionnel</p></div></div>
+      <div class="train-item"><span class="train-pill">2022</span><div><p class="train-name">Lifeskills</p><p class="train-org">Ministère de la Jeunesse · Développement et accomplissement personnel</p></div></div>
+      <div class="train-item"><span class="train-pill">2021</span><div><p class="train-name">Plaidoirie</p><p class="train-org">Mpanazava Eto Madagasikara · Prise de parole en public</p></div></div>
+      <div class="train-item"><span class="train-pill">2019</span><div><p class="train-name">Girl Powered Nutrition (GPN)</p><p class="train-org">Association Mondiale des Guides et des Éclaireuses</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="foot-name">Faneva Dina Fitiavana</p>
+  <p class="foot-tag">HR Consultant · Madagascar</p>
+  <div class="foot-links">
+    <a href="mailto:dinafitiavana14@gmail.com">dinafitiavana14@gmail.com</a>
+    <a href="tel:+261343961681">034 39 616 81</a>
+    <a href="#">@Dina Fitiavana</a>
+  </div>
+  <div class="foot-hr"></div>
+</footer>
+
+<script>
+  // Cursor
+  const cr = document.getElementById('cr'), crr = document.getElementById('crr');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function loop(){cr.style.left=mx+'px';cr.style.top=my+'px';rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;crr.style.left=rx+'px';crr.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,.about-tag,.atout-item,.form-card,.train-item,.asso-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cr.style.transform='translate(-50%,-50%) scale(2)';crr.style.width='52px';crr.style.height='52px';});
+    el.addEventListener('mouseleave',()=>{cr.style.transform='translate(-50%,-50%) scale(1)';crr.style.width='32px';crr.style.height='32px';});
+  });
+
+  // Nav scroll
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50));
+
+  // Intersection observer
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('vis');
+        e.target.querySelectorAll('.skill-fill').forEach(b=>b.classList.add('anim'));
+      }
+    });
+  },{threshold:0.13});
+
+  document.querySelectorAll('.tl-item,.form-card,.skill-item,.lang-item,.atout-item,.train-item,.asso-card,.portrait3-visual,.portrait3-content').forEach(el=>obs.observe(el));
+
+  // Stagger
+  document.querySelectorAll('.tl-item').forEach((el,i)=>el.style.transitionDelay=i*0.12+'s');
+  document.querySelectorAll('.form-card').forEach((el,i)=>el.style.transitionDelay=i*0.1+'s');
+  document.querySelectorAll('.skill-item').forEach((el,i)=>el.style.transitionDelay=i*0.08+'s');
+  document.querySelectorAll('.lang-item').forEach((el,i)=>el.style.transitionDelay=i*0.1+'s');
+  document.querySelectorAll('.atout-item').forEach((el,i)=>el.style.transitionDelay=i*0.12+'s');
+  document.querySelectorAll('.train-item').forEach((el,i)=>el.style.transitionDelay=i*0.07+'s');
+  document.querySelectorAll('.asso-card').forEach((el,i)=>el.style.transitionDelay=i*0.12+'s');
+
+  // Subtle parallax
+  window.addEventListener('scroll',()=>{
+    const y=scrollY;
+    const hl=document.querySelector('.hero-left');
+    const hr=document.querySelector('.hero-right');
+    if(hl)hl.style.transform=`translateY(${y*0.06}px)`;
+    if(hr)hr.style.transform=`translateY(${y*0.03}px)`;
+  });
+</script>
+</body>
+</html>

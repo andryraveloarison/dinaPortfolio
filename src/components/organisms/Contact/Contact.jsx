@@ -1,56 +1,17 @@
 import React from "react";
 import styles from "./Contact.module.css";
-import { getImageUrl } from "../../../utils";
-import contacts from "../../../data/contacts.json";
-import { useRef } from "react";
-import Word from "../../atoms/Word/Word.jsx";
-import { useScroll } from "framer-motion";
-
 
 export const Contact = () => {
-
-  const title = "CONTACT ME "
-  const titleRef = useRef(null)
-  const {scrollYProgress} = useScroll({
-    target: titleRef,
-    offset:['start end','start 0.25']
-  })
-
-  const words = title.split(" ")
-
-  
   return (
-    <footer id="contact" className={styles.container}>
-      <div className={styles.text}>
-        <h2 className={styles.title} ref={titleRef}> 
-          {
-            words.map((word,i)=>{
-              const start = i / words.length
-              return <Word key={i} range={[start, 1]} progress ={scrollYProgress}>{word}</Word>
-            })
-          }
-        </h2>
-        <p className={styles.contactText}>Feel free to contact me by email or through my social networks.</p>
+    <footer className={styles.footer} id="contact">
+      <p className={styles.footName}>Faneva Dina Fitiavana</p>
+      <p className={styles.footTag}>HR Consultant · Madagascar</p>
+      <div className={styles.footLinks}>
+        <a href="mailto:dinafitiavana14@gmail.com">dinafitiavana14@gmail.com</a>
+        <a href="tel:+261343961681">034 39 616 81</a>
+        <a href="#">@Dina Fitiavana</a>
       </div>
-      <ul className={styles.links}>
-
-        {
-          contacts.map((contact, id) => {
-            return(
-              <li key={id} className={styles.link}>
-                <img src={getImageUrl(contact.imageSrc)} alt="Email icon" className={styles.image}/>
-                <a href={contact.source} target="_blank">{contact.name}</a>
-              </li>
-            )
-          })
-        }
-
-      </ul>
-
-      <div className={styles.footer}>
-        <p>Designed and build by Andry </p>
-        <p>©Copyright 2024 - Andry RAVELOARISON</p>
-      </div>
+      <div className={styles.footHr}></div>
     </footer>
   );
 };

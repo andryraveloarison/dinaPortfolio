@@ -1,29 +1,33 @@
 [
   {
-    "role": "Software Engineer",
-    "organisation": "Google",
-    "startDate": "Sept, 2022",
-    "endDate": "Present",
-    "experiences": ["Worked on Google Maps", "Reduced load times by 50%"],
-    "imageSrc": "history/google.png"
-  },
-  {
-    "role": "UI Designer",
-    "organisation": "Mirosoft",
-    "startDate": "Aug, 2021",
-    "endDate": "Aug, 2022",
-    "experiences": ["Worked on Windows 11", "Designed the control panel"],
-    "imageSrc": "history/microsoft.png"
-  },
-  {
-    "role": "SWE Intern",
-    "organisation": "Netflix",
-    "startDate": "Apr, 2020",
-    "endDate": "Jun, 2020",
+    "role": "Master II en Gestion",
+    "organisation": "Université Catholique de Madagascar",
+    "startDate": "Octobre 2018",
+    "endDate": "Septembre 2023",
     "experiences": [
-      "Worked on component library",
-      "Helped create UI components"
+      "Management et Administration d'Entreprise",
+      "Mention Bien, Vice-major de promotion"
     ],
-    "imageSrc": "history/netflix.png"
+    "imageSrc": "history/ucm.png"
+  },
+  {
+    "role": "Formation en Langues Françaises",
+    "organisation": "Alliance Française Antananarivo",
+    "startDate": "Septembre 2021",
+    "endDate": "Avril 2022",
+    "experiences": [
+      "Certification DELF : 86/100"
+    ],
+    "imageSrc": "history/alliance_francaise.png"
+  },
+  {
+    "role": "BACC Littéraire Série A2",
+    "organisation": "Collège Saint Michel Amparibe",
+    "startDate": "Septembre 2015",
+    "endDate": "Juillet 2018",
+    "experiences": [
+      "Mention Bien"
+    ],
+    "imageSrc": "history/saint_michel.png"
   }
 ]

@@ -1,0 +1,225 @@
+.formBg {
+    background: var(--warm);
+    padding: 96px 0;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.secLabel {
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.secLabel::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.secTitle {
+    font-family: var(--font-serif);
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 56px;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 24px;
+}
+
+.formCard {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.formCard:hover {
+    box-shadow: 0 20px 44px rgba(45, 34, 24, 0.08);
+}
+
+.formYear {
+    font-family: var(--font-serif);
+    font-size: 64px;
+    font-weight: 300;
+    color: rgba(184, 147, 106, 0.12);
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    line-height: 1;
+}
+
+.formLvl {
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.formTitle {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.35;
+    margin-bottom: 8px;
+}
+
+.formPlace {
+    font-size: 15px;
+    color: var(--muted);
+}
+
+.formBadge {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 4px 12px;
+    background: rgba(184, 147, 106, 0.1);
+    color: var(--gold-dark);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.interestsCard {
+    background: rgba(184, 147, 106, 0.05);
+}
+
+.interestsDesc {
+    margin-top: 12px;
+    line-height: 1.7;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* ASSOCIATIF */
+.assoBg {
+    background: var(--warm);
+    padding: 140px 0;
+}
+
+.assoCols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.assoCard {
+    background: var(--peach);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.assoCard::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(184, 147, 106, 0.18);
+    border-radius: 50%;
+}
+
+.assoDate {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.assoRole {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+}
+
+.assoOrg {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.assoDesc {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+/* TRAININGS */
+.trainBg {
+    background: var(--cream);
+    padding: 96px 0;
+}
+
+.trainGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.trainItem {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    display: flex;
+    gap: 18px;
+    transition: border-color 0.2s;
+}
+
+.trainItem:hover {
+    border-color: var(--gold);
+}
+
+.trainPill {
+    background: rgba(184, 147, 106, 0.1);
+    color: var(--gold-dark);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    height: fit-content;
+}
+
+.trainName {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.trainOrg {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+
+    .assoCols,
+    .trainGrid {
+        grid-template-columns: 1fr;
+    }
+}
