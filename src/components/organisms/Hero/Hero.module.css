@@ -16,6 +16,21 @@
   overflow: hidden;
 }
 
+.portraitHero {
+  width: 400px;
+  height: 540px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ou contain si tu veux TOUT voir */
+  display: block;
+}
+
 .heroLeft::before {
   content: '';
   position: absolute;
@@ -136,10 +151,11 @@
   padding: 40px 0 0;
 }
 
-.portraitHero svg {
+.portraitImg {
   width: 90%;
   max-width: 420px;
   height: auto;
+  object-fit: contain;
 }
 
 .scrollHint {
@@ -182,9 +198,125 @@
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .heroLeft {
+    padding: 80px 40px 60px;
+    min-height: 70vh;
   }
 
   .heroRight {
     height: 60vw;
+    min-height: 400px;
+  }
+
+  .portraitHero {
+    width: 90%;
+    height: 90%;
+    padding: 20px 0 0;
+  }
+
+  .heroName {
+    font-size: clamp(36px, 5vw, 56px);
+  }
+
+  .heroTitle {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .heroQuote {
+    font-size: 18px;
+    max-width: 100%;
+    margin-bottom: 32px;
+  }
+
+  .heroContact a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .heroLeft {
+    padding: 60px 24px 40px;
+    min-height: auto;
+  }
+
+  .heroLeft::before {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    left: -100px;
+    opacity: 0.5;
+  }
+
+  .heroLeft::after {
+    width: 150px;
+    height: 150px;
+    bottom: -60px;
+    right: -60px;
+    opacity: 0.3;
+  }
+
+  .heroEyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .heroName {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 6px;
+  }
+
+  .heroTitle {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding-top: 12px;
+  }
+
+  .heroQuote {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 14px;
+    border-left-width: 1.5px;
+    margin-bottom: 24px;
+  }
+
+  .heroContact {
+    gap: 8px;
+  }
+
+  .heroContact a {
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .portraitHero {
+    width: 100%;
+    height: auto;
+    padding: 16px 0 0;
+  }
+
+  .portraitImg {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+
+  .heroRight {
+    height: auto;
+    min-height: 300px;
+    padding: 20px 0;
   }
 }

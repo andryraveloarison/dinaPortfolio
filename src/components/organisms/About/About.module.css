@@ -6,6 +6,7 @@
 .container {
   max-width: 1140px;
   margin: 0 auto;
+  padding: 0 64px;
 }
 
 .secLabel {
@@ -55,11 +56,14 @@
   border-radius: 2px;
   overflow: hidden;
   position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
 }
 
-.aboutPortraitFrame svg {
+.portraitImg {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
@@ -121,6 +125,10 @@
 }
 
 @media (max-width: 900px) {
+  .aboutSection {
+    padding: 90px 0;
+  }
+
   .aboutGrid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -128,5 +136,82 @@
 
   .container {
     padding: 0 24px;
+  }
+
+  .aboutPortraitFrame {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .aboutPortraitLabel {
+    top: 10px;
+    left: -15px;
+    font-size: 9px;
+    padding: 6px 12px;
+  }
+
+  .secTitle {
+    font-size: clamp(24px, 5vw, 34px);
+    margin-bottom: 32px;
+  }
+
+  .aboutText p {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .aboutTags {
+    gap: 6px;
+  }
+
+  .aboutTag {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .aboutSection {
+    padding: 60px 0;
+  }
+
+  .aboutPortrait {
+    width: 100%;
+  }
+
+  .aboutPortraitDeco {
+    width: 60px;
+    height: 60px;
+    bottom: -12px;
+    right: -12px;
+    border-width: 1.5px;
+  }
+
+  .secLabel {
+    font-size: 12px;
+  }
+
+  .secTitle {
+    font-size: clamp(20px, 4vw, 28px);
+    margin-bottom: 24px;
+  }
+
+  .aboutText p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .aboutTags {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .aboutTag {
+    font-size: 11px;
+    width: 100%;
+    text-align: center;
   }
 }

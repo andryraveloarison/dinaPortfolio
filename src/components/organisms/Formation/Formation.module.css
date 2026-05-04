@@ -139,7 +139,7 @@
 }
 
 .assoDate {
-    font-size: 10px;
+    font-size: 14px;
     letter-spacing: 2px;
     color: var(--gold);
     text-transform: uppercase;
@@ -155,13 +155,13 @@
 }
 
 .assoOrg {
-    font-size: 12px;
+    font-size: 18px;
     color: var(--muted);
     margin-bottom: 16px;
 }
 
 .assoDesc {
-    font-size: 18px;
+    font-size: 16px;
     color: var(--muted);
     line-height: 1.8;
 }
@@ -194,7 +194,7 @@
 .trainPill {
     background: rgba(184, 147, 106, 0.1);
     color: var(--gold-dark);
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 500;
     padding: 4px 10px;
     letter-spacing: 1px;
@@ -203,7 +203,7 @@
 }
 
 .trainName {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     color: var(--ink);
     margin-bottom: 6px;
@@ -211,7 +211,7 @@
 }
 
 .trainOrg {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--muted);
     line-height: 1.5;
 }

@@ -15,12 +15,17 @@
 .portrait3Visual {
     display: flex;
     justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.portrait3Visual svg {
+.portraitImg {
     width: 100%;
     max-width: 380px;
     height: auto;
+    aspect-ratio: 360/420;
+    object-fit: cover;
+    display: block;
 }
 
 .portrait3Content h2 {
@@ -54,12 +59,64 @@
 }
 
 @media (max-width: 900px) {
+    .portrait3Section {
+        padding: 90px 40px;
+    }
+
     .portrait3Inner {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
+    .portraitImg {
+        max-width: 320px;
+    }
+
+    .portrait3Content h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .portrait3Content p {
+        font-size: 16px;
+        line-height: 1.75;
+        margin-bottom: 16px;
+    }
+
+    .interestsText {
+        margin-top: 24px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 640px) {
     .portrait3Section {
         padding: 60px 24px;
+    }
+
+    .portrait3Inner {
+        gap: 24px;
+    }
+
+    .portraitImg {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .portrait3Content h2 {
+        font-size: clamp(24px, 5vw, 32px);
+        margin-bottom: 16px;
+        line-height: 1.2;
+    }
+
+    .portrait3Content p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+
+    .interestsText {
+        margin-top: 16px;
+        font-size: 14px;
     }
 }

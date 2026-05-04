@@ -9,7 +9,7 @@
 }
 
 .secLabel {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
@@ -59,12 +59,12 @@
 }
 
 .skillName {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--ink);
 }
 
 .skillPct {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--gold-dark);
   font-weight: 500;
 }
@@ -113,13 +113,13 @@
 }
 
 .langName {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--ink);
 }
 
 .langLvl {
-  font-size: 11px;
+  font-size: 15px;
   color: var(--muted);
 }
 
